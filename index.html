@@ -20,20 +20,31 @@
             font-size: 24px;
             margin: 10px 0;
         }
+        input[type="number"] {
+            padding: 5px;
+            margin: 10px 0;
+            width: 150px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
     </style>
 </head>
 <body>
     <div class="widget">
         <h2>Currency Exchange</h2>
-        <div>AUD to JPY</div>
-        <div class="exchange-rate" id="exchangeRate">Loading...</div>
+        <div><strong>AUD</strong> to <strong>JPY</strong></div>
+        <input type="number" id="audAmount" placeholder="Enter AUD amount" />
+        <div class="exchange-rate" id="convertedAmount">Converted amount will appear here</div>
     </div>
 
     <script>
-        // Mock exchange rate - replace this with API call if available
         var exchangeRate = 85.50; // Example rate: 1 AUD = 85.50 JPY
 
-        document.getElementById("exchangeRate").innerHTML = `1 AUD = ${exchangeRate.toFixed(2)} JPY`;
+        document.getElementById("audAmount").addEventListener("input", function() {
+            var audAmount = this.value;
+            var convertedAmount = audAmount * exchangeRate;
+            document.getElementById("convertedAmount").innerHTML = `${audAmount} AUD = ${convertedAmount.toFixed(2)} JPY`;
+        });
     </script>
 </body>
 </html>
